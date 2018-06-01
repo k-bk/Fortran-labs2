@@ -27,15 +27,24 @@ contains
       return
     end if
 
+! ------------ Version A -------------------
+!    do i = 1,n
+!      do j = 1,p
+!        X(j,i) = 0
+!        do k = 1,ma
+!          X(j,i) = X(j,i) + A(k,i) * B(j,k)
+!        end do
+!      end do
+!    end do
+! ------------ Version B (dot product) -----
     do i = 1,n
       do j = 1,p
-        X(j,i) = 0
-        do k = 1,ma
-          X(j,i) = X(j,i) + A(k,i) * B(j,k)
-        end do
+        X(j,i) = dot_product(A(:,i), B(j,:))
       end do
     end do
     exit_status = 0
+! ------------ Version C (cache) -----------
+! ------------ Version D (both) ------------
 
   end subroutine mm
 
