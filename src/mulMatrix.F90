@@ -9,13 +9,20 @@ contains
     real (kind=8), intent(in) :: B(:,:)
     real (kind=8), intent(out) :: X(:,:)
     integer (kind=4), intent(out) :: exit_status
-    integer (kind=4) :: i, j, k
+    integer (kind=4) :: i, j, k, n, ma, mb, p
+    logical :: ok_dim
+
+    n = size(A(1,:))
+    ma = size(A(:,1))
+    mb = size(B(1,:))
+    p = size(B(:,1))
+
+    ok_dim = .TRUE.
+    ok_dim = ma .EQ. MB
+    ok_dim = ok_dim .AND. (size(X(1,:)) .EQ. n)
+    ok_dim = ok_dim .AND. (size(X(:,1)) .EQ. p)
     
-    ! check for bad matrix dimesions
-    if (size(A(:,1)) .NE. size(B(1,:))) &
-      !.OR. size(A(1,:)) .NE. size(X(1,:)) &
-      !.OR. size(A(1,:)) .NE. size(X(1,:)) &
-    then
+    if (.NOT. ok_dim) then
       exit_status = -1
       return
     end if
@@ -33,6 +40,3 @@ contains
   end subroutine mm
 
 end module mulMatrix
-
-
-
