@@ -89,6 +89,11 @@ contains
     end do
 #endif
 
+! ------------ Version 5 (matmul) ----------
+#if VER == 5
+    X = matmul(A,B)
+#endif
+
     exit_status = 0
   end subroutine mm
 
