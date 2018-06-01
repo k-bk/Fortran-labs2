@@ -23,8 +23,9 @@ subroutine testMul_1xN()
   use pfunit_mod
   implicit none
 
-  real (kind=8) :: A(1,100), B(100,1), X(1,1), expected(1,1)
-  integer (kind=4) :: exit_status, i
+  real (kind=8) :: A(1,100), B(100,1), X(100,100)
+  real (kind=8) :: expected(100,100)
+  integer (kind=4) :: exit_status, i, j
 
   do i = 1,100
     A(1,i) = i 
@@ -32,9 +33,10 @@ subroutine testMul_1xN()
   do i = 1,100
     B(i,1) = i+1
   end do
-  expected(1,1) = 0
   do i = 1,100
-    expected(1,1) = expected(1,1) + i*(i+1)
+    do j = 1,100
+      expected(i,j) = i * (j+1) 
+    end do
   end do
 
   call mm(A, B, X, exit_status)
