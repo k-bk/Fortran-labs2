@@ -27,11 +27,11 @@ contains
       return
     end if
 
-    do i = 1,size(A(1,:))
-      do j = 1,size(B(:,1))
-        X(i,j) = 0
-        do k = 1,size(A(:,1))
-          X(i,j) = X(i,j) + A(k,i) * B(j,k)
+    do i = 1,n
+      do j = 1,p
+        X(j,i) = 0
+        do k = 1,ma
+          X(j,i) = X(j,i) + A(k,i) * B(j,k)
         end do
       end do
     end do

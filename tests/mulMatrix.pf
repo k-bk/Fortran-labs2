@@ -7,9 +7,9 @@ subroutine testMul_1x1()
   real (kind=8) :: A(1,1), B(1,1), X(1,1), expected(1,1)
   integer (kind=4) :: exit_status
 
-  A(1,1) = 2
-  B(1,1) = 5
-  expected(1,1) = 10
+  A = 2
+  B = 5
+  expected = 10
 
   call mm( A, B, X, exit_status )
   @assertEqual( 0, exit_status )
@@ -35,7 +35,7 @@ subroutine testMul_1xN()
   end do
   do i = 1,100
     do j = 1,100
-      expected(i,j) = i * (j+1) 
+      expected(i,j) = j * (i+1) 
     end do
   end do
 
@@ -53,7 +53,7 @@ subroutine testMul_Nx1()
 
   real (kind=8) :: A(100,1), B(1,100), X(1,1)
   real (kind=8) :: expected(1,1)
-  integer (kind=4) :: exit_status, i, j
+  integer (kind=4) :: exit_status, i
 
   do i = 1,100
     A(i,1) = i 
@@ -73,6 +73,26 @@ subroutine testMul_Nx1()
 end subroutine testMul_Nx1
 
 @test
+subroutine testMul_big()
+  use mulMatrix
+  use pfunit_mod
+  implicit none
+
+  real (kind=8) :: A(1000,1000), B(1000,1000)
+  real (kind=8) :: expected(1000,1000), X(1000,1000)
+  integer (kind=4) :: exit_status, i, j
+
+  A = 1 
+  B = 1 
+  expected = 1000
+
+  call mm( A, B, X, exit_status )
+  @assertEqual( 0, exit_status )
+  @assertEqual( expected, X )
+
+end subroutine testMul_big
+
+@test
 subroutine testMul_BadDimensions()
   use mulMatrix
   use pfunit_mod
@@ -85,3 +105,24 @@ subroutine testMul_BadDimensions()
   @assertEqual( -1, exit_status )
 
 end subroutine testMul_BadDimensions
+
+@test
+subroutine testMul_normal()
+  use mulMatrix
+  use pfunit_mod
+  implicit none
+
+  real (kind=8) :: A(10,20), B(15,10)
+  real (kind=8) :: expected(15,20), X(15,20)
+  integer (kind=4) :: exit_status, i, j
+
+  A = 6 
+  B = 2 
+  expected = 120
+
+  call mm( A, B, X, exit_status )
+  @assertEqual( 0, exit_status )
+  @assertEqual( expected, X )
+
+end subroutine testMul_normal
+
