@@ -1,0 +1,15 @@
+@test
+subroutine testHelloWorld()
+   use pfunit_mod
+   implicit none
+   @assertEqual("Hello World!","Hello World!")
+end subroutine testHelloWorld
+
+
+@test
+subroutine testIgnoreWhitespaceHelloWorld()
+   use pfunit_mod
+   implicit none
+   @assertEqual("Hello     World!","Hello World!  ",whitespace=IGNORE_DIFFERENCES)
+end subroutine testIgnoreWhitespaceHelloWorld
+
