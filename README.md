@@ -2,7 +2,7 @@
 2nd assignment for Fortran classes
 
 ## Result
-
+![Chart1](https://github.com/karolBak/Fortran-labs2/blob/master/point_chart.png)
 
 ## Compilation
 Compilation is done using gfortran with pFunit.
