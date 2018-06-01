@@ -15,6 +15,11 @@ To compile, type:
 $ make clean
 $ make
 ```
+To compile using different version of algorithm, use:
+```
+$ make VER=1
+```
+Where 1 is version (normal, dot_product, cache, both)
 
 ## Running
 Test suite should run automatically. It is also possible to run it from test.x

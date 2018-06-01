@@ -26,6 +26,12 @@ else
 	./$(EXE)
 endif
 
+ifeq ($(VER),)
+    FPPFLAGS += -DVER=1 -cpp
+else
+    FPPFLAGS += -DVER=$(VER) -cpp
+endif
+
 SUT:
 	make -C $(SRC_DIR) SUT
 	make -C $(TEST_DIR) tests
