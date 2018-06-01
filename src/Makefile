@@ -3,7 +3,7 @@ ifneq ($(BASEMK_INCLUDED),YES)
 include $(PFUNIT)/include/base.mk
 endif
 
-SUT: add$(OBJ_EXT) addComplex$(OBJ_EXT)
+SUT: mulMatrix$(OBJ_EXT)
 
 %$(OBJ_EXT): %.F90
 	$(FC) -c $(FFLAGS) $(FPPFLAGS) $<
